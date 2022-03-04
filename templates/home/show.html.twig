@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{offer.creator}} {% endblock %}
+{% block body %}
+    {{ dump(offer)}}
+    <div class="container mt-4"> 
+    <h1>{{offer.creator}}</h1> 
+    <h2> Créé le {{ offer.creationdate|date('d-m-Y')}}</h2>
+
+    {% if offer.modifier == false %}
+
+    <p><strong> Aucune modification effectuée </strong><p>
+
+    {% else %}
+
+    <p> Modification effectuée par <strong>{{ offer.modifier}}<strong> le <strong>{{offer.modifierdate|date('d-m-Y')}}<strong> </p>
+
+    {% endif %}
+    <p> Type de prestation : {{offer.offerbenefit.name}}
+    {% if offer.delivery == false %}
+    <h3> Valeur (aucune remise effectuée) : {{offer.amount}} €.</h3>
+    {% else %}
+    <p> Valeur : <strong>{{offer.amount}} €.</strong></p>
+    <br> 
+        {% if offer.offersdelivery.name == '%' %}
+        remise prévue : {{offer.delivery}}%.<br>
+        <h3>Valeur après remise : {{ offer.amount - (offer.amount/100)*offer.delivery}} €.</h3>
+        {% else %}
+        remise prévue : {{offer.delivery}} €.<br>
+        <h3>Valeur après remise : {{ offer.amount - offer.delivery }} €.</h3>
+        {% endif %}
+    
+    {% endif %}
+    </div>
+{% endblock %}

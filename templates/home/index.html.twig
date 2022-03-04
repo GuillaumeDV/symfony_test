@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %} Liste des offres {% endblock %}
+{% block body %}
+    <div class="container">
+        <h1>Les offres en cours </h1>
+        {{ dump(offers[0])}}
+        <div class="container col-2"><button type="button" class="btn btn-success">créer une offre</button></div>
+        {% for offer in offers %}
+        <div class="card mt-4">
+            <div class="card-header">
+                Par {{ offer.creator}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ offer.amount }} €</h5>
+                <p class="card-text">type de prestation : {{offer.offerbenefit.name}} <br>créé le {{offer.creationdate|date('d-m-Y')}}</p>
+                <a href="{{ path('offer.show', {id: offer.id})}}" class="btn btn-primary">Voir l'offre en détail</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
