@@ -22,7 +22,8 @@
     <p> Modification effectuée par <strong>{{ offer.modifier}}<strong> le <strong>{{offer.modifierdate|date('d-m-Y')}} à {{offer.modifierdate|date('H')}} heure {{offer.modifierdate|date('i')}}.<strong> </p>
 
     {% endif %}
-    <p> Type de prestation : {{offer.offerbenefit.name}}
+    <p> Type de prestation : {{offer.offerbenefit.name}} </p>
+    <p> Date butoire : {{offer.limitDate|date('d-m-Y')}} </p>
     {% if offer.delivery == false %}
     <h3> Valeur (aucune remise effectuée) : {{offer.amount}} €.</h3>
     {% else %}

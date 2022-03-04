@@ -23,6 +23,7 @@ class OfferType extends AbstractType
                 'scale' => 2,
                 'currency' => false,
             ))
+            ->add('limitDate', DateType::class)
             ->add('delivery')
             ->add('offers_delivery', EntityType::class, array(
                 'class' => TypeOfDelivery::class,

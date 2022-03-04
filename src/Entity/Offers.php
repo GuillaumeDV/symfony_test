@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OffersRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=OffersRepository::class)
@@ -56,6 +57,12 @@ class Offers
      * @ORM\ManyToOne(targetEntity=BenefitType::class, inversedBy="offers")
      */
     private $offer_benefit;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\GreaterThan("today")
+     */
+    private $limitDate;
 
     public function __construct()
     {
@@ -159,6 +166,18 @@ class Offers
     public function setOfferBenefit(?BenefitType $offer_benefit): self
     {
         $this->offer_benefit = $offer_benefit;
+
+        return $this;
+    }
+
+    public function getLimitDate(): ?\DateTimeInterface
+    {
+        return $this->limitDate;
+    }
+
+    public function setLimitDate(?\DateTimeInterface $limitDate): self
+    {
+        $this->limitDate = $limitDate;
 
         return $this;
     }
