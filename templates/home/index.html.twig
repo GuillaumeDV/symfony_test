@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Les offres en cours </h1>
         {{ dump(offers[0])}}
-        <div class="container col-2"><button type="button" class="btn btn-success">créer une offre</button></div>
+        <div class="container col-2"><a href="{{ path('offer.create')}}" class="btn btn-success">Créer une offre</a></div>
         {% for offer in offers %}
         <div class="card mt-4">
             <div class="card-header">

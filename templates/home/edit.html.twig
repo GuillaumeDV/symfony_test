@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
-{% block title %} Créer une offre {% endblock %}
+{% block title %} Modifier l'offre de {{ offer.creator }} {% endblock %}
 {% block body %}
-<div class="container mt-4">
+    <div class="container mt-4">
     <h1>  Modifier l'offre de {{ offer.creator }} </h1>
     {{ form_start(form) }}
-        {{ form_label(form.Creator, 'Votre Nom Prénom')}}
+        {{ form_label(form.Creator, 'Créateur de l\'offre')}}
         {{ form_widget(form.Creator)}}
+        {{ form_label(form.modifier, 'Votre Nom Prénom ( personne modifiant)')}}
+        {{ form_widget(form.modifier)}}
         {{ form_label(form.amount, 'Valeur de l\'offre')}}
         {{ form_widget(form.amount)}}
         {{ form_label(form.offers_delivery, 'système de réduction')}}
@@ -14,7 +16,7 @@
         {{ form_widget(form.delivery)}}
         {{ form_label(form.offer_benefit, 'Technicité')}}
         {{ form_widget(form.offer_benefit,)}} <br>
-        <button class="btn btn-primary">Créer</button>
+        <button class="btn btn-primary">Editer</button>
     {{ form_end(form) }}
     </div>
 {% endblock %}

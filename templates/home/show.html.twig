@@ -12,7 +12,7 @@
 
     {% else %}
 
-    <p> Modification effectuée par <strong>{{ offer.modifier}}<strong> le <strong>{{offer.modifierdate|date('d-m-Y')}}<strong> </p>
+    <p> Modification effectuée par <strong>{{ offer.modifier}}<strong> le <strong>{{offer.modifierdate|date('d-m-Y')}} à {{offer.modifierdate|date('H')}} heure {{offer.modifierdate|date('i')}}.<strong> </p>
 
     {% endif %}
     <p> Type de prestation : {{offer.offerbenefit.name}}
@@ -30,5 +30,6 @@
         {% endif %}
     
     {% endif %}
+    <div class="container col-2"><a href="{{ path('offer.edit', {id: offer.id})}}" class="btn btn-warning">modifier l'offre</a></div>
     </div>
 {% endblock %}
