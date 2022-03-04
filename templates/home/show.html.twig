@@ -3,7 +3,14 @@
 {% block body %}
     {{ dump(offer)}}
     <div class="container mt-4"> 
-    <h1>{{offer.creator}}</h1> 
+    <div class="row">
+        <div class="col-10">
+            <h1>{{offer.creator}}</h1> 
+        </div>
+        <div class="col-2">
+            <a href="{{ path('offer.delete', {id: offer.id})}}" class="btn btn-danger">Supprimer</a>
+        </div>
+    </div>
     <h2> Créé le {{ offer.creationdate|date('d-m-Y')}}</h2>
 
     {% if offer.modifier == false %}
@@ -30,6 +37,16 @@
         {% endif %}
     
     {% endif %}
-    <div class="container col-2"><a href="{{ path('offer.edit', {id: offer.id})}}" class="btn btn-warning">modifier l'offre</a></div>
+    <div class="row">
+        <div class="col-4">
+            <a href="{{ path('offer.edit', {id: offer.id})}}" class="btn btn-warning">modifier l'offre</a>
+        </div>
+        <div class="col-6">
+        </div>
+        <div class="col-2">
+            <a href="{{ path('offer.duplicate', {id: offer.id})}}" class="btn btn-warning">dupliquer l'offre</a>
+        </div>
+    </div>
+    <div class="container col-2"><a href="{{ path('home')}}" class="btn btn-success">retour</a></div>
     </div>
 {% endblock %}

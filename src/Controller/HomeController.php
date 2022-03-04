@@ -47,7 +47,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/créer", name="offer.create")
      */
-    public function create(Request $request): Response
+    public function create(Request $request)
     {
         $offer = new Offers();
 
@@ -67,7 +67,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/éditer/{id}", name="offer.edit")
      */
-    public function edit($id, Request $request): Response
+    public function edit($id, Request $request)
     {
         $offer = $this->repository->find($id);
 
@@ -83,5 +83,27 @@ class HomeController extends AbstractController
             'offer' => $offer,
             'form' => $form->createView(),
         ]);
+    }
+
+     /**
+     * @Route("/dupliquer/{id}", name="offer.duplicate")
+     */
+    public function duplicate($id)
+    {
+        $offer = $this->repository->find($id);
+        $duplicate_offer = clone $offer;
+        $this->em->persist($duplicate_offer);
+            $this->em->flush();
+            return $this->redirectToRoute('home');
+
+    }
+
+    /**
+     * @Route("/supprimer/{id}", name="offer.delete")
+     */
+    public function delete(Offers $offer) {
+        $this->em->remove($offer);
+        $this->em->flush();
+        return $this->redirectToRoute('home');
     }
 }
